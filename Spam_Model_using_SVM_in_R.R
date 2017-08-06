@@ -40,7 +40,7 @@ sigDist <- sigest(y~.,data=train,frac=1)
 svmTuneGrid <- data.frame(.sigma=sigDist[1], .C=2^(-2:7))
 
 #fit model
-svm.fit <- train(y~., data=train, preProc=c("center", "scale"), tuneGrid=svmTuneGrid, trControl= trainControl(method="repeatedcv", repeats=5))
+svm.fit <- train(y~., data=train, method="svmRadial", preProc=c("center", "scale"), tuneGrid=svmTuneGrid, trControl= trainControl(method="repeatedcv", repeats=5))
 
 #predict
 predicted <- predict(svm.fit, test[,1:57])
